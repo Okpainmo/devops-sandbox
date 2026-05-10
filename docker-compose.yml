@@ -1,0 +1,16 @@
+services:
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: ${NGINX_CONTAINER:-devops-sandbox-nginx}
+    restart: unless-stopped
+    ports:
+      - "${SANDBOX_HTTP_PORT:-8080}:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    name: ${PROXY_NETWORK:-devops-sandbox-proxy}

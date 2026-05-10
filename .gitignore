@@ -1,0 +1,13 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+
+envs/*
+!envs/.gitkeep
+
+logs/*
+!logs/.gitkeep
+
+nginx/conf.d/*
+!nginx/conf.d/.gitkeep
