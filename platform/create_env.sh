@@ -75,7 +75,9 @@ docker network connect "$PROXY_NETWORK" "$CONTAINER_ID"
 TMP_NGINX_CONF="$(mktemp "$NGINX_CONFD_DIR/$ENV_ID.XXXXXX.tmp")"
 cat >"$TMP_NGINX_CONF" <<EOF_CONF
 location /env/$ENV_ID/ {
-    proxy_pass http://$CONTAINER_NAME:8000/;
+    resolver 127.0.0.11 valid=10s ipv6=off;
+    set \$sandbox_upstream http://$CONTAINER_NAME:8000;
+    proxy_pass \$sandbox_upstream/;
     proxy_http_version 1.1;
     proxy_set_header Host \$host;
     proxy_set_header X-Real-IP \$remote_addr;

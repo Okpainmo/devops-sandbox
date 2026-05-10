@@ -77,7 +77,7 @@ env_log_dir() {
 reload_nginx() {
   if docker ps --format '{{.Names}}' | grep -qx "$NGINX_CONTAINER"; then
     docker exec "$NGINX_CONTAINER" nginx -t >/dev/null 2>&1
-    docker exec "$NGINX_CONTAINER" nginx -s reload >/dev/null
+    docker exec "$NGINX_CONTAINER" nginx -s reload >/dev/null 2>&1
   fi
 }
 
