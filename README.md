@@ -4,6 +4,12 @@
 
 The bundled workload is a tiny Python HTTP app. The platform behavior is the point: lifecycle automation, routing, log shipping, health monitoring, chaos controls, and an API wrapped around the same scripts used by `make`.
 
+> For review:
+>
+> A life deployment of the project can be accessed at: `http://ec2-13-53-245-53.eu-north-1.compute.amazonaws.com`
+>
+> For more context, see [Control API](#control-api) and [Full Demo Walkthrough](#full-demo-walkthrough) below.
+
 ## Architecture
 
 ```text
@@ -202,6 +208,8 @@ The outage script validates environment IDs and refuses to target Nginx or daemo
 ## Control API
 
 The API listens on `SANDBOX_API_PORT`, default `5000`.
+
+> For live deployment testing, simply replace `localhost` with the IP address of the VM instance(AWS EC2 - in the case of the one added above for review purposes).
 
 ```bash
 curl -X POST http://localhost:5000/envs \
