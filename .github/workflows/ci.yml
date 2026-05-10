@@ -1,0 +1,17 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  shellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install shellcheck
+        run: sudo apt-get update && sudo apt-get install -y shellcheck
+      - name: Shellcheck scripts
+        run: shellcheck platform/*.sh
+      - name: Python syntax check
+        run: python3 -m py_compile platform/api.py monitor/health_poller.py monitor/health_status.py demo-app/app.py
